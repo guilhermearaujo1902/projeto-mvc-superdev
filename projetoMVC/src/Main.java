@@ -36,22 +36,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null, mensagemInsert);
                     break;
                 case 2:
-                    List<Produto> produtoList = controller.getAll();
-
-                    StringBuilder listaImprimir = new StringBuilder();
-
-                    for (Produto produto : produtoList) {
-                        listaImprimir.append(produto.getId());
-                        listaImprimir.append(" - ");
-                        listaImprimir.append(produto.getDescricao());
-                        listaImprimir.append(" - ");
-                        listaImprimir.append(produto.getPreco());
-                        listaImprimir.append("\n");
-                    }
-
-                    JOptionPane.showMessageDialog(
-                            null,
-                            listaImprimir.toString());
+                    JOptionPane.showMessageDialog(null, controller.getFormatedList());
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do sistema ...");

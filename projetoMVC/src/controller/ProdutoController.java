@@ -37,4 +37,25 @@ public class ProdutoController {
         return produtoList;
     }
 
+    public String getFormatedList() throws Exception {
+        List<Produto> produtoList = this.getAll();
+
+        if (produtoList.isEmpty()) {
+            return "Nenhum produto cadastrado no momento.";
+        }
+
+        StringBuilder listaImprimir = new StringBuilder();
+
+        for (Produto produto : produtoList) {
+            listaImprimir.append(produto.getId());
+            listaImprimir.append(" - ");
+            listaImprimir.append(produto.getDescricao());
+            listaImprimir.append(" - ");
+            listaImprimir.append(produto.getPreco());
+            listaImprimir.append("\n");
+        }
+
+        return listaImprimir.toString();
+    }
+
 }
