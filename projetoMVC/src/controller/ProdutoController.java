@@ -58,4 +58,10 @@ public class ProdutoController {
         return listaImprimir.toString();
     }
 
+    public Produto getById (int id) throws Exception {
+        GenericDAO dao = new ProdutoDAO();
+        Produto produtoEncontrado = (Produto) dao.getById(id);
+        return produtoEncontrado;
+    }
+
 }

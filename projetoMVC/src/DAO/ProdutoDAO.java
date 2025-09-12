@@ -65,7 +65,36 @@ public class ProdutoDAO implements GenericDAO {
 
     @Override
     public Object getById(int id) {
-        return null;
+        Produto produtoEncontrado = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM produto WHERE id = ?";
+        try {
+            stmt = this.conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                produtoEncontrado = new Produto();
+
+                produtoEncontrado.setId(rs.getInt("id"));
+                produtoEncontrado.setDescricao(rs.getString("descricao"));
+                produtoEncontrado.setPreco(rs.getDouble("preco"));
+                produtoEncontrado.setStatus(rs.getBoolean("status"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(conn, stmt, rs);
+            } catch (Exception ex) {
+                System.out.println("Problemas ao fechar conexão. Erro: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+
+        return produtoEncontrado;
     }
 
     @Override

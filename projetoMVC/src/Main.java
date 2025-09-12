@@ -14,6 +14,7 @@ public class Main {
         menu.append("\n[1] Cadastrar");
         menu.append("\n[2] Listar todos");
         menu.append("\n[3] Buscar por ID");
+        menu.append("\n[4] Buscar Descrição");
         menu.append("\n[0] Sair");
         menu.append("\n\nSelecione uma opção");
 
@@ -37,6 +38,23 @@ public class Main {
                     break;
                 case 2:
                     JOptionPane.showMessageDialog(null, controller.getFormatedList());
+                    break;
+                case 3:
+                    int idBuscar = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID para buscar o produto"));
+                    Produto produtoEncontrado = controller.getById(idBuscar);
+                    if (produtoEncontrado != null) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "*** Produto Encontrado! ***\n" +
+                                        "\nNome: " + produtoEncontrado.getDescricao() +
+                                        "\nCódigo: " + produtoEncontrado.getId() +
+                                        "\nPreço: R$" + produtoEncontrado.getPreco());
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Nenhum produto econtrado com o código " + idBuscar
+                        );
+                    }
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do sistema ...");
