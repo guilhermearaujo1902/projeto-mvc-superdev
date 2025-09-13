@@ -15,8 +15,14 @@ public class Main {
         menu.append("\n[2] Listar todos");
         menu.append("\n[3] Buscar por ID");
         menu.append("\n[4] Buscar Descrição");
+        menu.append("\n[5] Excluir");
         menu.append("\n[0] Sair");
         menu.append("\n\nSelecione uma opção");
+
+        // IMPLEMENTAR
+        // Opção 4 - Buscar pela descrição
+        // Opção 5 - Melhorar a exclusão
+        // Opção 6 - Alterar
 
         int opcao = -1;
 
@@ -55,6 +61,13 @@ public class Main {
                                 "Nenhum produto econtrado com o código " + idBuscar
                         );
                     }
+                    break;
+                case 5:
+                    // Validar primeiro se existe o produto para o código informado pelo usuário, e somente seguir com o
+                    // processo de deletar se o produto existir
+                    int idDelete = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do produto para excluir"));
+                    controller.delete(idDelete);
+                    JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do sistema ...");
