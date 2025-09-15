@@ -2,6 +2,7 @@ import controller.ProdutoController;
 import model.Produto;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -42,7 +43,8 @@ public class Main {
                     JOptionPane.showMessageDialog(null, mensagemInsert);
                     break;
                 case 2:
-                    JOptionPane.showMessageDialog(null, controller.getFormatedList());
+                    List<Produto> listaTodosProdutos = controller.getAll();
+                    controller.printFormatedList(listaTodosProdutos);
                     break;
                 case 3:
                     int idBuscar = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID para buscar o produto"));
@@ -64,20 +66,7 @@ public class Main {
                 case 4:
                     String descricaoBusca = JOptionPane.showInputDialog("Digite a descrição para buscar o produto");
                     List<Produto> produtosFiltradosPorDesc = controller.getByDescricao(descricaoBusca);
-
-                    StringBuilder listaFiltrados = new StringBuilder();
-
-                    for (Produto produto : produtosFiltradosPorDesc) {
-                        listaFiltrados.append(produto.getId());
-                        listaFiltrados.append(" - ");
-                        listaFiltrados.append(produto.getDescricao());
-                        listaFiltrados.append(" - ");
-                        listaFiltrados.append(produto.getPreco());
-                        listaFiltrados.append("\n");
-                    }
-
-                    JOptionPane.showMessageDialog(null, listaFiltrados.toString());
-
+                    controller.printFormatedList(produtosFiltradosPorDesc);
                     break;
                 case 5:
                     // Validar primeiro se existe o produto para o código informado pelo usuário, e somente seguir com o

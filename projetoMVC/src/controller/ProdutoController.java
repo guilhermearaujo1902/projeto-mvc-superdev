@@ -4,6 +4,7 @@ import DAO.GenericDAO;
 import DAO.ProdutoDAO;
 import model.Produto;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,16 +38,16 @@ public class ProdutoController {
         return produtoList;
     }
 
-    public String getFormatedList() throws Exception {
-        List<Produto> produtoList = this.getAll();
+    public void printFormatedList(List<Produto> lista) {
 
-        if (produtoList.isEmpty()) {
-            return "Nenhum produto cadastrado no momento.";
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não existem produtos na lista.");
         }
 
         StringBuilder listaImprimir = new StringBuilder();
+        listaImprimir.append("*** Lista de Produtos ***\n\n");
 
-        for (Produto produto : produtoList) {
+        for (Produto produto : lista) {
             listaImprimir.append(produto.getId());
             listaImprimir.append(" - ");
             listaImprimir.append(produto.getDescricao());
@@ -55,7 +56,7 @@ public class ProdutoController {
             listaImprimir.append("\n");
         }
 
-        return listaImprimir.toString();
+        JOptionPane.showMessageDialog(null, listaImprimir.toString());
     }
 
     public Produto getById(int id) throws Exception {
