@@ -69,4 +69,9 @@ public class ProdutoController {
         dao.delete(id);
     }
 
+    public List<Produto> getByDescricao(String descricao) throws Exception {
+        ProdutoDAO dao = new ProdutoDAO();
+        return dao.getByDescricao(descricao);
+    }
+
 }

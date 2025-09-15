@@ -20,7 +20,6 @@ public class Main {
         menu.append("\n\nSelecione uma opção");
 
         // IMPLEMENTAR
-        // Opção 4 - Buscar pela descrição
         // Opção 5 - Melhorar a exclusão
         // Opção 6 - Alterar
 
@@ -61,6 +60,24 @@ public class Main {
                                 "Nenhum produto econtrado com o código " + idBuscar
                         );
                     }
+                    break;
+                case 4:
+                    String descricaoBusca = JOptionPane.showInputDialog("Digite a descrição para buscar o produto");
+                    List<Produto> produtosFiltradosPorDesc = controller.getByDescricao(descricaoBusca);
+
+                    StringBuilder listaFiltrados = new StringBuilder();
+
+                    for (Produto produto : produtosFiltradosPorDesc) {
+                        listaFiltrados.append(produto.getId());
+                        listaFiltrados.append(" - ");
+                        listaFiltrados.append(produto.getDescricao());
+                        listaFiltrados.append(" - ");
+                        listaFiltrados.append(produto.getPreco());
+                        listaFiltrados.append("\n");
+                    }
+
+                    JOptionPane.showMessageDialog(null, listaFiltrados.toString());
+
                     break;
                 case 5:
                     // Validar primeiro se existe o produto para o código informado pelo usuário, e somente seguir com o
