@@ -66,8 +66,23 @@ public class ProdutoController {
     }
 
     public void delete(int id) throws Exception {
-        GenericDAO dao = new ProdutoDAO();
-        dao.delete(id);
+        Produto produtoEncontrado = this.getById(id);
+
+        if (produtoEncontrado == null) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Nâo foi encontrado registro para o código " + id);
+        } else {
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.delete(id);
+            JOptionPane.showMessageDialog(
+                    null,
+                    "*** Produto excluído com sucesso! ***\n" +
+                            "\nCódigo: " + produtoEncontrado.getId() +
+                            "\nDescrição: " + produtoEncontrado.getDescricao()
+            );
+        }
+
     }
 
     public List<Produto> getByDescricao(String descricao) throws Exception {

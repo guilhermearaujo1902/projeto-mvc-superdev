@@ -69,11 +69,11 @@ public class Main {
                     controller.printFormatedList(produtosFiltradosPorDesc);
                     break;
                 case 5:
-                    // Validar primeiro se existe o produto para o código informado pelo usuário, e somente seguir com o
-                    // processo de deletar se o produto existir
+                    // DESAFIO:
+                    // Caso o código informado pelo usuário for de um produto que exista no banco de dados
+                    // Exibir a pergunta de confirmação "Deseja realmente excluir o produto XYZ?"
                     int idDelete = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do produto para excluir"));
                     controller.delete(idDelete);
-                    JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do sistema ...");
