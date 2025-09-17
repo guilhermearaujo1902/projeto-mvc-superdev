@@ -17,12 +17,12 @@ public class Main {
         menu.append("\n[3] Buscar por ID");
         menu.append("\n[4] Buscar Descrição");
         menu.append("\n[5] Excluir");
+        menu.append("\n[6] Alterar");
         menu.append("\n[0] Sair");
         menu.append("\n\nSelecione uma opção");
 
         // IMPLEMENTAR
         // Opção 5 - Melhorar a exclusão
-        // Opção 6 - Alterar
 
         int opcao = -1;
 
@@ -74,6 +74,26 @@ public class Main {
                     // Exibir a pergunta de confirmação "Deseja realmente excluir o produto XYZ?"
                     int idDelete = Integer.parseInt(JOptionPane.showInputDialog("Digite o código do produto para excluir"));
                     controller.delete(idDelete);
+                    break;
+                case 6:
+                    int idAlterar = Integer.parseInt(JOptionPane.showInputDialog("Digite o código para alterar o produto"));
+                    Produto produtoAlterar = controller.getById(idAlterar);
+
+                    // Validando se o produto existe no banco
+                    if (produtoAlterar != null) {
+
+                        String novaDescricao = JOptionPane.showInputDialog("Digite a nova descrição");
+                        Double novoPreco = Double.parseDouble(JOptionPane.showInputDialog("Digite o novo preço"));
+
+                        produtoAlterar.setDescricao(novaDescricao);
+                        produtoAlterar.setPreco(novoPreco);
+
+                        controller.update(produtoAlterar);
+                    } else {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Produto não encontrado para o código " + idAlterar);
+                    }
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do sistema ...");

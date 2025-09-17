@@ -90,4 +90,19 @@ public class ProdutoController {
         return dao.getByDescricao(descricao);
     }
 
+    public void update(Produto produto) throws Exception {
+        GenericDAO dao = new ProdutoDAO();
+        if (dao.update(produto) == true) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    produto.getDescricao() + " foi atualizado com sucesso!"
+            );
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Não foi possível alterar o produto " + produto.getDescricao()
+            );
+        }
+    }
+
 }
